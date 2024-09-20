@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
 
         {% block stylesheets %}
         {% endblock %}
-            <nav> <a href="/home">Accueil</a> <a href="/burger">Burger</a> </nav>
+            {% include '_header.html.twig' %}
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
@@ -16,4 +17,5 @@
     <body>
         {% block body %}{% endblock %}
     </body>
+    {% include '_footer.html.twig' %}
 </html>
