@@ -14,11 +14,10 @@ class burgerController extends AbstractController
         $tableau = [0,1,2];
         return $this->render('burger.html.twig', ['tableau_burger' => $tableau]);
     }
-    #[Route('/burger/{id}', name: 'burger_id')]
-    public function show(int $id): Response
+    
+    #[Route('/burger/{id}', name: 'burger_id', requirements: ['id' => '\d+'])]
+    public function redirectNumber(int $id): Response
     {
-        $tableau = [0,1,2];
-        $burger = $tableau[$id];
-        return $this->render('burger_show.html.twig', ['tableau' => $burger]);
+        return $this->render('burger_show.html.twig', ['id' => $id]);
     }
 }
