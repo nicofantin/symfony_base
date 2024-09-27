@@ -4,7 +4,7 @@
 {% block body %}Liste des burgers
 <ul>
         {% for number in tableau_burger %}
-           <li><a href="{{ path('burger_id', {'id': number}) }}">{{ number }}</a></li>
+           <li><a href="{{ path('burger1_id', {'id': number}) }}">{{ number }}</a></li>
         {% endfor %}
     </ul>
 {% endblock %}

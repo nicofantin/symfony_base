@@ -8,14 +8,14 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class burgerController extends AbstractController
 {
-    #[Route('/burger', name: 'burger')]
+    #[Route('/burger1', name: 'burger1')]
     public function list(): Response
     {
         $tableau = [0,1,2];
         return $this->render('burger.html.twig', ['tableau_burger' => $tableau]);
     }
     
-    #[Route('/burger/{id}', name: 'burger_id', requirements: ['id' => '\d+'])]
+    #[Route('/burger1/{id}', name: 'burger1_id', requirements: ['id' => '\d+'])]
     public function redirectNumber(int $id): Response
     {
         return $this->render('burger_show.html.twig', ['id' => $id]);
