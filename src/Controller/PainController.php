@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\PainRepository;
+use App\Entity\Pain;
 
 class PainController extends AbstractController
 {
@@ -33,7 +36,7 @@ class PainController extends AbstractController
     public function index2(PainRepository $painRepository): Response
     {
         // Vous pouvez injecter EntityManagerInterface à la place de BurgerRepository qui n'existe pas encore 
-        $pains = $painRepository->findAll();
+        $pain = $painRepository->findAll();
         return $this->render('pain/index.html.twig', [
             'pains' => $pain,
         ]);

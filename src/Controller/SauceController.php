@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\SauceRepository;
+use App\Entity\Sauce;
 
 class SauceController extends AbstractController
 {
@@ -33,9 +36,9 @@ class SauceController extends AbstractController
     public function index2(SauceRepository $sauceRepository): Response
     {
         // Vous pouvez injecter EntityManagerInterface à la place de BurgerRepository qui n'existe pas encore 
-        $sauces = $sauceRepository->findAll();
+        $sauce = $sauceRepository->findAll();
         return $this->render('sauce/index.html.twig', [
-            'sauces' => $sauce,
+            'sauce' => $sauce,
         ]);
     }
 }

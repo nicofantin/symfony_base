@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\CommentaireRepository;
+use App\Entity\Commentaire;
 
 class CommentaireController extends AbstractController
 {
@@ -33,7 +36,7 @@ class CommentaireController extends AbstractController
     public function index2(CommentaireRepository $commentaireRepository): Response
     {
         // Vous pouvez injecter EntityManagerInterface à la place de BurgerRepository qui n'existe pas encore 
-        $commentaires = $commentaireRepository->findAll();
+        $commentaire = $commentaireRepository->findAll();
         return $this->render('commentaire/index.html.twig', [
             'commentaires' => $commentaire,
         ]);

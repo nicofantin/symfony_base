@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\ImageRepository;
+use App\Entity\Image;
 
 class ImageController extends AbstractController
 {
@@ -33,7 +36,7 @@ class ImageController extends AbstractController
     public function index2(ImageRepository $imageRepository): Response
     {
         // Vous pouvez injecter EntityManagerInterface à la place de BurgerRepository qui n'existe pas encore 
-        $images = $imageRepository->findAll();
+        $image = $imageRepository->findAll();
         return $this->render('image/index.html.twig', [
             'images' => $image,
         ]);
