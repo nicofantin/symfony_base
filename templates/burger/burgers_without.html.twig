@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello BurgerController!{% endblock %}
+
+{% block body %}
+        {% for number in burgersWithout %}
+           <li>{{ number.name }}</li>
+        {% endfor %}
+{% endblock %}
