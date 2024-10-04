@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\BurgerRepository;
 use App\Entity\Burger;
+use App\Entity\Oignon;
 
 class BurgerController extends AbstractController
 {
@@ -39,12 +40,18 @@ class BurgerController extends AbstractController
         $burger = new Burger();
         $burger->setName('burger');
     
-        // Persister et sauvegarder le burger
+        $oignon = new Oignon();
+        $oignon->setName('Oignon rouge');
+        $burger->addOignon($oignon);
+    
+        // Persister explicitement l'oignon avant le burger
+        $entityManager->persist($oignon);
         $entityManager->persist($burger);
         $entityManager->flush();
     
         return new Response('Burger créé avec succès !');
     }
+    
 
     #[Route('/burgers', name: 'burger_index')]
     public function index2(BurgerRepository $burgerRepository): Response
@@ -53,6 +60,15 @@ class BurgerController extends AbstractController
         $burgers = $burgerRepository->findAll();
         return $this->render('burger/index.html.twig', [
             'burgers' => $burgers,
+        ]);
+    }
+
+    #[Route('/burgers/specific', name: 'burger_specific')]
+    public function specificBurgers(BurgerRepository $burgerRepository): Response
+    {
+        $burgersspec = $burgerRepository->findSpecificBurgers('Oignon rouge');
+        return $this->render('burger/specific.html.twig', [
+            'burgersspec' => $burgersspec,
         ]);
     }
 }

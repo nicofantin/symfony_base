@@ -16,6 +16,23 @@ class BurgerRepository extends ServiceEntityRepository
         parent::__construct($registry, Burger::class);
     }
 
+    public function findSpecificBurgers(string $ingredient): array
+    {
+        $entityManager = $this->getEntityManager();
+    
+        // Assurez-vous que la syntaxe DQL correspond à votre modèle de données.
+        $query = $entityManager->createQuery(
+            'SELECT b
+            FROM App\Entity\Burger b
+            JOIN b.Oignon o
+            WHERE o.name = :ingredient'
+        )->setParameter('ingredient', $ingredient);
+    
+        return $query->getResult();
+    }
+    
+
+
 //    /**
 //     * @return Burger[] Returns an array of Burger objects
 //     */
